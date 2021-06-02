@@ -113,10 +113,20 @@ public class Browser {
 		return ((RemoteWebDriver) browser).getCapabilities();
 	}
 
+
+	/**
+	 * click on the element
+	 * 
+	 * @param element             By element
+	 */
+	public void click(By element) {
+		waitUntilElement(element, EnumExpectedConditions.ELEMENTTOBECLICKABLE);
+		browser.findElement(element).click();
+	}
+
 	/**
 	 * @return Browser Name
 	 */
-
 	public String getBrowserName() {
 		return _capabilities.getBrowserName();
 	}
