@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import br.com.alura.leilao.test.support.Browser;
+import br.com.alura.leilao.test.support.Browsers;
 
 public class HelloWorldSelenium {
 
@@ -11,9 +12,9 @@ public class HelloWorldSelenium {
 	
 	@Test
 	public void Hello() {
-		Browser browser = new Browser();
-		browser.open("chrome", false);
-		browser.navigateTo("http://localhost:8080/leiloes", false);
-		browser.quit();
+		Browser hello = new Browser();
+		hello.open(Browsers.CHROME, false);
+		hello.navigateTo("http://localhost:8080/leiloes", false);
+		hello.quit();
 	}
 }

@@ -1,6 +1,6 @@
 package br.com.alura.leilao.test.support;
 
-public enum EnumExpectedConditions {
+public enum Expected_Conditions {
 	ALERTISPRESENT,
 	ELEMENTSELECTIONSTATETOBE_TRUE,	
 	ELEMENTSELECTIONSTATETOBE_FALSE,
