@@ -61,6 +61,53 @@ public class Browser {
 	}
 
 	/**
+	 * Validate part of the URL
+	 * 
+	 * @param String text
+	 * 
+	 * @return boolean
+	 */
+	public boolean currentUrlContains(String text) {
+		waitPageLoad();
+		return browser.getCurrentUrl().contains(text);
+	}
+
+	/**
+	 * Validate URL
+	 * 
+	 * @param String url
+	 * 
+	 * @return boolean
+	 */
+	public boolean currentUrlEquals(String url) {
+		waitPageLoad();
+		return browser.getCurrentUrl().equals(url);
+	}
+
+	/**
+	 * Validate URL ignoring Case
+	 * 
+	 * @param String url
+	 * 
+	 * @return boolean
+	 */
+	public boolean currentUrlEqualsIgnoreCase(String url) {
+		waitPageLoad();
+		return browser.getCurrentUrl().equalsIgnoreCase(url);
+	}
+
+	/**
+	 * Validate presence of element located
+	 * 
+	 * @param By element
+	 * 
+	 * @return boolean
+	 */
+	public boolean elementLocated(By element) {
+		return ExpectedConditions.presenceOfAllElementsLocatedBy(element).apply(browser) != null;
+	}
+	
+	/**
 	 * @return Browser Name
 	 */
 	public String getBrowserName() {
@@ -112,7 +159,18 @@ public class Browser {
 		waitPageLoad();
 		if (acceptInsecureCerts)
 			validateSSL();
+	}
 
+	/**
+	 * Validate text on page
+	 * 
+	 * @param String text
+	 * 
+	 * @return boolean
+	 */
+	public boolean pageSourceContains(String text) {
+		waitPageLoad();
+		return browser.getPageSource().contains(text);
 	}
 
 	/**
