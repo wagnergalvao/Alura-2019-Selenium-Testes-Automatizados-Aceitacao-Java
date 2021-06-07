@@ -1,5 +1,6 @@
 package br.com.alura.leilao.test.support;
 
+import java.text.Normalizer;
 import java.util.Map;
 
 import org.openqa.selenium.By;
@@ -171,6 +172,17 @@ public class Browser {
 	public boolean pageSourceContains(String text) {
 		waitPageLoad();
 		return browser.getPageSource().contains(text);
+	}
+
+	/**
+	 * Remove accents from text
+	 * 
+	 * @param String text
+	 * 
+	 * @return String
+	 */
+	public String noAccent(String text) {
+		return Normalizer.normalize(text, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
 	}
 
 	/**
