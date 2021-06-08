@@ -22,7 +22,7 @@ public class Browser {
 	public static WebDriver browser;
 	public static Capabilities _capabilities;
 	public static Map<String, Long> _timeouts;
-	protected WebDriverWait _wait;
+	public static WebDriverWait _wait;
 	protected String _validate;
 
 	/**

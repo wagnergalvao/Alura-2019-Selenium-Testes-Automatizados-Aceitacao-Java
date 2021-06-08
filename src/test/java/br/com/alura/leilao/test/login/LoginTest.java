@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import br.com.alura.leilao.test.support.Browsers;
 
-public class Login {
+public class LoginTest {
 
 	private LoginPage login = new LoginPage();
 
