@@ -1,4 +1,4 @@
-package br.com.alura.leilao.test.login;
+package br.com.alura.leilao.login;
 
 import java.util.Locale;
 
@@ -6,25 +6,19 @@ import org.openqa.selenium.By;
 
 import com.github.javafaker.Faker;
 
-import br.com.alura.leilao.test.leiloes.AuctionsPage;
-import br.com.alura.leilao.test.support.Browser;
-import br.com.alura.leilao.test.support.Browsers;
+import br.com.alura.leilao.BasePage;
+import br.com.alura.leilao.leiloes.AuctionsPage;
+import br.com.alura.leilao.support.Browsers;
 
-public class LoginPage {
-
-	private Browser browser;
+public class LoginPage extends BasePage{
 
 	public LoginPage() {
-		this.browser = new Browser();
+		super(null);
 	}
 
-	public static final String BASE_URL = "http://localhost:8080";
-	public static final String AUCTIONS_URL = BASE_URL + "/leiloes";
 	public static final String LOGIN_URL = BASE_URL + "/login";
 	public static final String LOGIN_ERROR_URL = LOGIN_URL + "?error";
 	public static final String loginErrorMessage = "Usuário e senha inválidos.";
-	public static final String bidURL = BASE_URL + "/leiloes/2";
-	public static final String bidTitle = "Dados do Leilão";
 
 	private Faker fake = new Faker(new Locale("pt-BR"));
 
@@ -66,18 +60,6 @@ public class LoginPage {
 
 	public boolean displayErrorMessage() {
 		return browser.pageSourceContains(loginErrorMessage);
-	}
-
-	public void accessBidePage() {
-		browser.navigateTo(bidURL, false);
-	}
-
-	public boolean displayBidTitle() {
-		return browser.pageSourceContains(bidTitle);
-	}
-
-	public void quit() {
-		browser.quit();
 	}
 
 }

@@ -1,4 +1,4 @@
-package br.com.alura.leilao.test.support;
+package br.com.alura.leilao.support;
 
 import java.text.Normalizer;
 import java.util.Map;

@@ -1,14 +1,17 @@
-package br.com.alura.leilao.test.leiloes;
+package br.com.alura.leilao.leiloes;
 
 import org.openqa.selenium.By;
 
-import br.com.alura.leilao.test.support.Browser;
+import br.com.alura.leilao.BasePage;
+import br.com.alura.leilao.support.Browser;
 
-public class NewAuctionPage {
+public class NewAuctionPage extends BasePage {
 
-	private Browser browser;
 
-	public static final String BASE_URL = "http://localhost:8080";
+	public NewAuctionPage(Browser browser) {
+		super(browser);
+	}
+
 	public static final String NEW_AUCTION_URL = BASE_URL + "/new";
 
 	public String errorMessageMinimumName = "minimo 3 caracteres";
@@ -21,14 +24,6 @@ public class NewAuctionPage {
 	private By fieldInitialValue = By.id("valorInicial");
 	private By fieldOpeningDate = By.id("dataAbertura");
 	private By buttonSubmit = By.id("button-submit");
-
-	public NewAuctionPage(Browser browser) {
-		this.browser = browser;
-	}
-
-	public void quit() {
-		browser.quit();
-	}
 
 	public AuctionsPage registerNewAuction(String auctionName, String initialValue, String openingDate) {
 		browser.sendKeys(fieldAuctionName, auctionName);

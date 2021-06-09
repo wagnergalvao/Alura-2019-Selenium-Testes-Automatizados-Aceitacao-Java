@@ -1,4 +1,4 @@
-package br.com.alura.leilao.test.leiloes;
+package br.com.alura.leilao.leiloes;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -13,8 +13,8 @@ import org.junit.jupiter.api.Test;
 
 import com.github.javafaker.Faker;
 
-import br.com.alura.leilao.test.login.LoginPage;
-import br.com.alura.leilao.test.support.Browsers;
+import br.com.alura.leilao.login.LoginPage;
+import br.com.alura.leilao.support.Browsers;
 
 public class AuctionsTest {
 

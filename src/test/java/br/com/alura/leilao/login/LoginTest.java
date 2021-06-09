@@ -1,4 +1,4 @@
-package br.com.alura.leilao.test.login;
+package br.com.alura.leilao.login;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -7,11 +7,13 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import br.com.alura.leilao.test.support.Browsers;
+import br.com.alura.leilao.lance.AuctionBidPage;
+import br.com.alura.leilao.support.Browsers;
 
 public class LoginTest {
 
 	private LoginPage login = new LoginPage();
+	private AuctionBidPage auctionBidPage;
 
 	@BeforeEach
 	public void inicializar() {
@@ -49,8 +51,8 @@ public class LoginTest {
 
 	@Test
 	public void naoAcessarPaginaRestritaDeslogado() {
-		login.accessBidePage();
+		this.auctionBidPage = new AuctionBidPage(null); 
 		assertTrue(login.isLoginURL());
-		assertFalse(login.displayBidTitle());
+		assertFalse(auctionBidPage.displayAuctionBidTitle());
 	}
 }

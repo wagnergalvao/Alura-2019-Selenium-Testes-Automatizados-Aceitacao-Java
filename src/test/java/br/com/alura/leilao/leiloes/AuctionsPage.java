@@ -1,19 +1,15 @@
-package br.com.alura.leilao.test.leiloes;
+package br.com.alura.leilao.leiloes;
 
 import org.openqa.selenium.By;
 
-import br.com.alura.leilao.test.support.Browser;
+import br.com.alura.leilao.BasePage;
+import br.com.alura.leilao.support.Browser;
 
-public class AuctionsPage {
-
-	private Browser browser;
+public class AuctionsPage extends BasePage{
 
 	public AuctionsPage(Browser browser) {
-		this.browser = browser;
+		super(browser);
 	}
-
-	public static final String BASE_URL = "http://localhost:8080";
-	public static final String AUCTIONS_URL = BASE_URL + "/leiloes";
 
 	private By buttonNewAuction = By.id("novo_leilao_link");
 	private By lastAuctionName = By.cssSelector("table > tbody > tr:last-child > td:nth-child(1)");
@@ -27,10 +23,6 @@ public class AuctionsPage {
 	public NewAuctionPage accessNewAuction() {
 		browser.click(buttonNewAuction);
 		return new NewAuctionPage(browser);
-	}
-
-	public void quit() {
-		browser.quit();
 	}
 
 	public boolean isNewAuction(String nome, String valor, String inicio) {

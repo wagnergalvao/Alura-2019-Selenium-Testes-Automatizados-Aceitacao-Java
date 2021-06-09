@@ -1,10 +1,10 @@
-package br.com.alura.leilao.test;
+package br.com.alura.leilao;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import br.com.alura.leilao.test.support.Browser;
-import br.com.alura.leilao.test.support.Browsers;
+import br.com.alura.leilao.support.Browser;
+import br.com.alura.leilao.support.Browsers;
 
 public class HelloWorldSelenium {
 
