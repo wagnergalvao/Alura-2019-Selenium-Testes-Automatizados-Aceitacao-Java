@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -24,32 +25,6 @@ public class Browser {
 	public static Map<String, Long> _timeouts;
 	public static WebDriverWait _wait;
 	protected String _validate;
-
-	/**
-	 * Open the browser
-	 * 
-	 * @param browserName
-	 * @param acceptInsecureCerts: true Skip Secure Sockets Layer Validation false
-	 *                             Maintain Secure Sockets Layer validation
-	 * 
-	 * @return Browser instance
-	 */
-	public WebDriver open(Browsers browsers, boolean acceptInsecureCerts) {
-		browser = browsers.browserInstance(_timeouts, acceptInsecureCerts);
-		browser.manage().window().maximize();
-		_capabilities = getCapabilities();
-		_timeouts = getTimeouts();
-		return browser;
-	}
-
-	/**
-	 * Get Browser Capabilities
-	 * 
-	 * @return Browser Capabilities
-	 */
-	public Capabilities getCapabilities() {
-		return ((RemoteWebDriver) browser).getCapabilities();
-	}
 
 	/**
 	 * click on the element
@@ -107,7 +82,7 @@ public class Browser {
 	public boolean elementLocated(By element) {
 		return ExpectedConditions.presenceOfAllElementsLocatedBy(element).apply(browser) != null;
 	}
-	
+
 	/**
 	 * @return Browser Name
 	 */
@@ -116,12 +91,12 @@ public class Browser {
 	}
 
 	/**
-	 * Get Browser Timeouts
+	 * Get Browser Capabilities
 	 * 
-	 * @return Browser Timeouts
+	 * @return Browser Capabilities
 	 */
-	public Map<String, Long> getTimeouts() {
-		return (Map<String, Long>) _capabilities.getCapability("timeouts");
+	public Capabilities getCapabilities() {
+		return ((RemoteWebDriver) browser).getCapabilities();
 	}
 
 	/**
@@ -137,7 +112,16 @@ public class Browser {
 	}
 
 	/**
-	 * get text from element
+	 * Get Browser Timeouts
+	 * 
+	 * @return Browser Timeouts
+	 */
+	public Map<String, Long> getTimeouts() {
+		return (Map<String, Long>) _capabilities.getCapability("timeouts");
+	}
+
+	/**
+	 * get value from element
 	 * 
 	 * @param By element
 	 * 
@@ -163,6 +147,34 @@ public class Browser {
 	}
 
 	/**
+	 * Remove accents from text
+	 * 
+	 * @param String text
+	 * 
+	 * @return String
+	 */
+	public String noAccent(String text) {
+		return Normalizer.normalize(text, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
+	}
+
+	/**
+	 * Open the browser
+	 * 
+	 * @param browserName
+	 * @param acceptInsecureCerts: true Skip Secure Sockets Layer Validation false
+	 *                             Maintain Secure Sockets Layer validation
+	 * 
+	 * @return Browser instance
+	 */
+	public WebDriver open(Browsers browsers, boolean acceptInsecureCerts) {
+		browser = browsers.browserInstance(_timeouts, acceptInsecureCerts);
+		browser.manage().window().maximize();
+		_capabilities = getCapabilities();
+		_timeouts = getTimeouts();
+		return browser;
+	}
+
+	/**
 	 * Validate text on page
 	 * 
 	 * @param String text
@@ -172,17 +184,6 @@ public class Browser {
 	public boolean pageSourceContains(String text) {
 		waitPageLoad();
 		return browser.getPageSource().contains(text);
-	}
-
-	/**
-	 * Remove accents from text
-	 * 
-	 * @param String text
-	 * 
-	 * @return String
-	 */
-	public String noAccent(String text) {
-		return Normalizer.normalize(text, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
 	}
 
 	/**
@@ -199,7 +200,7 @@ public class Browser {
 	/**
 	 * write on the element
 	 * 
-	 * @param By element
+	 * @param By     element
 	 * 
 	 * @param String text
 	 */
@@ -254,8 +255,8 @@ public class Browser {
 	/**
 	 * waits until the element meets the expected condition
 	 * 
-	 * @param By element
-
+	 * @param By                  element
+	 * 
 	 * @param Expected_Conditions expected
 	 */
 	public void waitUntilElement(By element, Expected_Conditions expected) {
@@ -290,6 +291,18 @@ public class Browser {
 			}
 		} catch (Exception e) {
 		}
+	}
+
+	/**
+	 * get web element
+	 * 
+	 * @param By element
+	 * 
+	 * @return WebElement
+	 */
+	public WebElement getWebElement(By element) {
+		waitUntilElement(element, Expected_Conditions.PRESENCEOFELEMENTLOCATED);
+		return browser.findElement(element);
 	}
 
 }

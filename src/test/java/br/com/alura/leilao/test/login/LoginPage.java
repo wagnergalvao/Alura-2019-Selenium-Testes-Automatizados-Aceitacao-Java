@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 
 import com.github.javafaker.Faker;
 
-import br.com.alura.leilao.test.leiloes.LeiloesPage;
+import br.com.alura.leilao.test.leiloes.AuctionsPage;
 import br.com.alura.leilao.test.support.Browser;
 import br.com.alura.leilao.test.support.Browsers;
 
@@ -47,9 +47,9 @@ public class LoginPage {
 		usuarioLogado = By.xpath("//span[contains(text(),\"" + browser.getValue(formLoginUsuario) + "\")]");
 	}
 
-	public LeiloesPage signIn() {
+	public AuctionsPage signIn() {
 		browser.click(botaoLogin);
-		return new LeiloesPage(browser);
+		return new AuctionsPage(browser);
 	}
 
 	public boolean isLoggedIn() {
